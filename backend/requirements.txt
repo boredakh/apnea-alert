@@ -1,6 +1,6 @@
 ﻿fastapi==0.104.1
 uvicorn[standard]==0.24.0
-scikit-learn==1.7.2  # MUST match your training version!
-numpy==2.0.0         # Latest numpy (compatible with 1.7.2)
+scikit-learn==1.7.2
+numpy>=1.25.0  # Must have numpy._core
 joblib==1.3.2
 python-dotenv==1.0.0
