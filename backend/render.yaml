@@ -2,8 +2,10 @@
   - type: web
     name: apnea-alert-api
     env: python
-    buildCommand: pip install --only-binary :all: -r backend/requirements.txt
+    buildCommand: pip install -r backend/requirements.txt
     startCommand: python backend/main_render.py
     envVars:
       - key: PORT
         value: 8000
+      - key: PYTHON_VERSION
+        value: 3.10.0
