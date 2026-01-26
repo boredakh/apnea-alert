@@ -2,6 +2,7 @@
 ApneaAlert API - Simplified for Render Deployment
 """
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware  # <-- ADD THIS
 from pydantic import BaseModel
 import uvicorn
 import joblib
@@ -22,6 +23,15 @@ app = FastAPI(
     description="Sleep Apnea Detection using Machine Learning",
     version="1.0.0",
     docs_url="/docs"
+)
+
+# ADD THIS CORS MIDDLEWARE SECTION
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
 )
 
 # Try to load model, fallback to mock if not available
