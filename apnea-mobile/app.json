@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -19,8 +18,14 @@
       "infoPlist": {
         "CFBundleURLTypes": [
           {
+            "CFBundleURLName": "ApneaAlert",
             "CFBundleURLSchemes": ["apneaalert"]
           }
+        ],
+        "LSApplicationQueriesSchemes": [
+          "fitbit",
+          "https",
+          "http"
         ]
       }
     },
@@ -30,13 +35,13 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.yourcompany.apneaalert",
-      "edgeToEdgeEnabled": true,
       "intentFilters": [
         {
           "action": "VIEW",
           "data": [
             {
-              "scheme": "apneaalert"
+              "scheme": "apneaalert",
+              "host": "fitbit-callback"
             }
           ],
           "category": [
@@ -50,11 +55,20 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-router",
+        {
+          "origin": "https://endymion-seven.vercel.app"
+        }
+      ]
     ],
     "extra": {
       "fitbitClientId": "23TZXG",
-      "fitbitClientSecret": "5ba1f05cd65c3d6d82e3fabfc7f2834f"
+      "fitbitClientSecret": "5ba1f05cd65c3d6d82e3fabfc7f2834f",
+      "router": {
+        "origin": "https://endymion-seven.vercel.app"
+      }
     }
   }
 }

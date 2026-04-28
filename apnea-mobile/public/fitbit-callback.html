@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitbit Callback</title>
+</head>
+<body>
+  <h1>Connecting to Fitbit...</h1>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const error = urlParams.get('error');
+    
+    if (code) {
+      localStorage.setItem('fitbit_auth_code', code);
+      document.body.innerHTML = '<h2>✓ Success! You can close this window.</h2>';
+      setTimeout(() => window.close(), 2000);
+    } else if (error) {
+      document.body.innerHTML = '<h2>❌ Error: ' + error + '</h2>';
+    } else {
+      document.body.innerHTML = '<h2>❌ No code received</h2>';
+    }
+  </script>
+</body>
+</html>

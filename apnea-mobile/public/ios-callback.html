@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitbit Callback</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="font-family: system-ui, sans-serif; text-align: center; padding: 50px 20px;">
+  <h1 style="color: #6fc6a8;">ApneaAlert</h1>
+  <h2>Connecting to Fitbit...</h2>
+  <div id="status">Processing...</div>
+  
+  <script>
+    (function() {
+      // Try multiple ways to get the code
+      let code = new URLSearchParams(window.location.search).get('code');
+      
+      // Check URL fragment (after #)
+      if (!code && window.location.hash) {
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        code = hashParams.get('code');
+      }
+      
+      const error = new URLSearchParams(window.location.search).get('error');
+      
+      console.log('iOS Callback - Full URL:', window.location.href);
+      console.log('iOS Callback - Code found:', !!code);
+      
+      const statusDiv = document.getElementById('status');
+      
+      if (code) {
+        // Store in localStorage for the app to pick up
+        localStorage.setItem('fitbit_auth_code', code);
+        localStorage.setItem('fitbit_auth_time', Date.now().toString());
+        
+        statusDiv.innerHTML = '✓ Success! Code received.<br>Return to the app.';
+        
+        // Show a button to return to app
+        statusDiv.innerHTML += '<br><br><button onclick="window.location.href=\'apneaalert://fitbit-callback?code=' + code + '\'" style="padding: 12px 24px; background: #6fc6a8; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 20px;">Return to App</button>';
+      } else if (error) {
+        statusDiv.innerHTML = '❌ Error: ' + error;
+      } else {
+        statusDiv.innerHTML = '❌ No code received. Please try again.';
+      }
+    })();
+  </script>
+</body>
+</html>
