@@ -19,14 +19,26 @@
         "CFBundleURLTypes": [
           {
             "CFBundleURLName": "ApneaAlert",
-            "CFBundleURLSchemes": ["apneaalert"]
+            "CFBundleURLSchemes": [
+              "apneaalert"
+            ]
+          },
+          {
+            "CFBundleURLName": "ApneaAlert",
+            "CFBundleURLSchemes": [
+              "apneaalert"
+            ]
           }
         ],
         "LSApplicationQueriesSchemes": [
           "fitbit",
           "https",
+          "http",
+          "fitbit",
+          "https",
           "http"
-        ]
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -68,6 +80,9 @@
       "fitbitClientSecret": "5ba1f05cd65c3d6d82e3fabfc7f2834f",
       "router": {
         "origin": "https://endymion-seven.vercel.app"
+      },
+      "eas": {
+        "projectId": "f0a7c672-12e3-4eca-8ba1-55d66e08a5ee"
       }
     }
   }
